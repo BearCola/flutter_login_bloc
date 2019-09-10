@@ -18,4 +18,12 @@ class Validators {
       sink.addError('Password must be at least 4 characters');
     }
   });
+  final validatePincode = StreamTransformer<String, String>.fromHandlers(
+      handleData: (pincode, sink) {
+    if (pincode.length > 5) {
+      sink.add(pincode);
+    } else {
+      sink.addError('Pincode must be at least 6 characters');
+    }
+  });
 }

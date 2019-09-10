@@ -14,6 +14,7 @@ class LoginScreen extends StatelessWidget {
         children: <Widget>[
           emailField(bloc),
           passwordField(bloc),
+          pincodeField(bloc),
           Container(
             margin: EdgeInsets.only(top: 25.0),
           ),
@@ -53,6 +54,23 @@ class LoginScreen extends StatelessWidget {
             ),
           );
         });
+  }
+
+  Widget pincodeField(Bloc bloc) {
+    return StreamBuilder(
+      stream: bloc.pincode,
+      builder: (context, snapshot) {
+        return TextField(
+          onChanged: bloc.changePincode,
+          obscureText: true,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+              hintText: 'Pincode',
+              labelText: 'Pincode',
+              errorText: snapshot.error),
+        );
+      },
+    );
   }
 
   Widget submitButton(Bloc bloc) {
